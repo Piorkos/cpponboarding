@@ -10,14 +10,14 @@ int main()
     // std::cout << "--lvalues and rvalues \n";
     // lrValues();
 
-    std::cout << "--move semantics \n";
+    // std::cout << "--move semantics \n";
     // FootballPlayer diego("Diego");
     // diego.printName();
 
-    SimpleString name{"Diego"};
-    SimpleString brother{name};
-    name.print();
-    brother.print();
+    // std::cout << "--std::move and assignment operator \n";
+    // SimpleString diego{"Diego"};
+    // SimpleString ronaldo{"Ronaldo"};
+    // ronaldo = std::move(diego);
 
     std::cout << "----end\n";
 

@@ -3,7 +3,7 @@
 
 // needed on mac
 #include <sys/types.h>
-//typedef u_int32_t uint32_t;
+typedef u_int32_t uint32_t;
 
 class SimpleString
 {
@@ -11,7 +11,7 @@ public:
     SimpleString() = default;
     SimpleString(const char* simpleString)
     {
-        std::cout << "SimpleString constructor #1\n";
+        std::cout << "SimpleString constructor #2\n";
         size_ = std::strlen(simpleString);
         data_ = new char[size_];
         memcpy(data_, simpleString, size_);
@@ -25,27 +25,33 @@ public:
         memcpy(data_, simpleString.data_, size_);
     }
 
-<<<<<<< HEAD
     // SimpleString(SimpleString&& simpleString)
     // {
     //     std::cout << "SimpleString constructor MOVE\n";
     //     size_ = simpleString.size_;
     //     data_ = simpleString.data_;
-    
+    // 
     //     simpleString.size_ = 0;
     //     simpleString.data_ = nullptr;
     // }
-=======
-    SimpleString(SimpleString&& simpleString)
-    {
-        std::cout << "SimpleString constructor MOVE\n";
-        size_ = simpleString.size_;
-        data_ = simpleString.data_;
->>>>>>> parent of 4f05f00... move assignment operator
 
-        simpleString.size_ = 0;
-        simpleString.data_ = nullptr;
-    }
+    // SimpleString& operator=(SimpleString&& simpleString)
+    // {
+    //     std::cout << "SimpleString operator= MOVE\n";
+    // 
+    //     if(this != &simpleString)
+    //     {
+    //         delete[] data_;
+    // 
+    //         size_ = simpleString.size_;
+    //         data_ = simpleString.data_;
+    // 
+    //         simpleString.size_ = 0;
+    //         simpleString.data_ = nullptr;
+    //     }
+    // 
+    //     return *this;
+    // }
 
     ~SimpleString()
     {
@@ -64,74 +70,23 @@ private:
     uint32_t size_;
 };
 
-<<<<<<< HEAD
-class Contract
-{
-public:
-    
-    Contract(int duration, int salary, SimpleString FootballPlayerName, SimpleString TeamName)
-        : duration_(duration), salary_(salary), FootballPlayerName_(FootballPlayerName), TeamName_(TeamName), FootballPlayerShirtNumber_(0)
-    {
-        std::cout << "Contract constructor #1\n";
-    }
 
-    Contract(int duration, int salary, SimpleString& FootballPlayerName, SimpleString& TeamName)
-        : duration_(duration), salary_(salary), FootballPlayerName_(FootballPlayerName), TeamName_(TeamName), FootballPlayerShirtNumber_(0)
-    {
-        std::cout << "Contract constructor COPY #1\n";
-    }
-
-    // Contract(int duration, int salary, SimpleString&& FootballPlayerName, SimpleString&& TeamName)
-    //     : duration_(duration), salary_(salary), FootballPlayerName_(std::move(FootballPlayerName)), TeamName_(std::move(TeamName)), FootballPlayerShirtNumber_(0)
-    // {
-    //     std::cout << "Contract constructor MOVE #1\n";
-    // }
-
-    Contract(Contract&& contract)
-    {
-        std::cout << "Contract constructor MOVE\n";
-    }
-
-    ~Contract()
-    {
-        std::cout << "Contract destructor\n";
-    }
-
-private:
-    int duration_;
-    int salary_;
-    SimpleString FootballPlayerName_;
-    SimpleString TeamName_;
-    int FootballPlayerShirtNumber_;
-
-};
-
-=======
->>>>>>> parent of 4f05f00... move assignment operator
 class FootballPlayer
 {
 public:
-    FootballPlayer(const SimpleString& name, Contract contract)
-        : name_{name}, number_{0} , contract_{std::move(contract)}
+    FootballPlayer(const SimpleString& name)
+        : name_{name}, number_{0}
     {
         std::cout << "FootballPlayer constructor #1\n";
+
     }
 
-<<<<<<< HEAD
-    // FootballPlayer(SimpleString&& name, Contract&& contract)
-    //     : name_{std::move(name)}, number_{0}, contract_{std::move(contract)}
+    // FootballPlayer(SimpleString&& name)
+    //     : name_{std::move(name)}, number_{0}
     // {
     //     std::cout << "FootballPlayer constructor MOVE\n";
-    
+    // 
     // }
-=======
-    FootballPlayer(SimpleString&& name)
-        : name_{std::move(name)}, number_{0}
-    {
-        std::cout << "FootballPlayer constructor MOVE\n";
-
-    }
->>>>>>> parent of 4f05f00... move assignment operator
 
     ~FootballPlayer()
     {
@@ -146,7 +101,5 @@ public:
 
 private:
     SimpleString name_;
-    int number_;
-    Contract contract_;
+    uint number_;
 };
-

@@ -3,7 +3,7 @@
 
 // needed on mac
 #include <sys/types.h>
-typedef u_int32_t uint32_t;
+//typedef u_int32_t uint32_t;
 
 class SimpleString
 {
@@ -101,5 +101,66 @@ public:
 
 private:
     SimpleString name_;
-    uint number_;
+    int number_;
+};
+
+class Contract
+{
+public:
+
+    int recoverNumber(int number)
+    {
+        if(typeid(number) != typeid(int))
+        {
+            std::cout << "The value found in file isn't a number (might be corrupted)... " << std::endl;
+            return -1;
+        }else
+        {
+            return number;
+        }    
+    }
+
+    SimpleString recoverString(SimpleString string)
+    {
+        if(typeid(string) != typeid(SimpleString))
+        {
+            std::cout << "The value found in file isn't a SimpleString (might be corrupted)... " << std::endl;
+            return " ";
+        }else
+        {
+            return string;
+        }    
+    }     
+
+    Contract(int duration, int salary, SimpleString FootballPlayerName, SimpleString TeamName)
+        : duration_(duration), salary_(salary), FootballPlayerName_(FootballPlayerName), TeamName_(TeamName),
+          FootballPlayerShirtNumber_(0)
+    {
+        duration_ = recoverNumber(duration);
+        salary_ = recoverNumber(salary);
+        FootballPlayerName_ = recoverString(FootballPlayerName);
+        TeamName_ = recoverString(TeamName);
+
+        std::cout << "Contract constructor #1\n";
+    }
+
+    Contract(int&& duration, int&& salary, SimpleString&& FootballPlayerName, SimpleString&& TeamName)
+        : duration_(std::move(duration)), salary_(std::move(salary)), FootballPlayerName_(std::move(FootballPlayerName)), TeamName_(std::move(TeamName)),
+          FootballPlayerShirtNumber_(0)
+    {
+        std::cout << "Contract constructor MOVE\n";
+    }
+
+    ~Contract()
+    {
+        std::cout << "Contract destructor\n";
+    }
+
+private:
+    int duration_;
+    int salary_;
+    SimpleString FootballPlayerName_;
+    SimpleString TeamName_;
+    int FootballPlayerShirtNumber_;
+
 };

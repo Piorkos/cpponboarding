@@ -25,6 +25,7 @@ public:
         memcpy(data_, simpleString.data_, size_);
     }
 
+<<<<<<< HEAD
     // SimpleString(SimpleString&& simpleString)
     // {
     //     std::cout << "SimpleString constructor MOVE\n";
@@ -34,24 +35,17 @@ public:
     //     simpleString.size_ = 0;
     //     simpleString.data_ = nullptr;
     // }
+=======
+    SimpleString(SimpleString&& simpleString)
+    {
+        std::cout << "SimpleString constructor MOVE\n";
+        size_ = simpleString.size_;
+        data_ = simpleString.data_;
+>>>>>>> parent of 4f05f00... move assignment operator
 
-    // SimpleString& operator=(SimpleString&& simpleString)
-    // {
-    //     std::cout << "SimpleString operator= MOVE\n";
-    // 
-    //     if(this != &simpleString)
-    //     {
-    //         delete[] data_;
-    // 
-    //         size_ = simpleString.size_;
-    //         data_ = simpleString.data_;
-    // 
-    //         simpleString.size_ = 0;
-    //         simpleString.data_ = nullptr;
-    //     }
-    // 
-    //     return *this;
-    // }
+        simpleString.size_ = 0;
+        simpleString.data_ = nullptr;
+    }
 
     ~SimpleString()
     {
@@ -70,6 +64,7 @@ private:
     uint32_t size_;
 };
 
+<<<<<<< HEAD
 class Contract
 {
 public:
@@ -111,6 +106,8 @@ private:
 
 };
 
+=======
+>>>>>>> parent of 4f05f00... move assignment operator
 class FootballPlayer
 {
 public:
@@ -120,12 +117,21 @@ public:
         std::cout << "FootballPlayer constructor #1\n";
     }
 
+<<<<<<< HEAD
     // FootballPlayer(SimpleString&& name, Contract&& contract)
     //     : name_{std::move(name)}, number_{0}, contract_{std::move(contract)}
     // {
     //     std::cout << "FootballPlayer constructor MOVE\n";
     
     // }
+=======
+    FootballPlayer(SimpleString&& name)
+        : name_{std::move(name)}, number_{0}
+    {
+        std::cout << "FootballPlayer constructor MOVE\n";
+
+    }
+>>>>>>> parent of 4f05f00... move assignment operator
 
     ~FootballPlayer()
     {

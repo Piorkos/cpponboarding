@@ -19,6 +19,7 @@ int main()
     // std::cout << "--lvalues and rvalues \n";
     // lrValues();
 
+<<<<<<< HEAD
     //Contract defContract(20,10000,"Alberto", "AlbertoTeam");
     //FootballPlayer diego("Diego", defContract);
     //diego.printName();
@@ -50,6 +51,16 @@ int main()
     std::cout << "Time taken by program is : " << std::fixed 
          << time_taken;
     std::cout << " sec " << std::endl;
+=======
+    std::cout << "--move semantics \n";
+    // FootballPlayer diego("Diego");
+    // diego.printName();
+
+    SimpleString name{"Diego"};
+    SimpleString brother{name};
+    name.print();
+    brother.print();
+>>>>>>> parent of 4f05f00... move assignment operator
 
     std::cout << "----end\n";
 
